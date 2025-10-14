@@ -1,0 +1,795 @@
+/* ===================================================================
+   Corrected & Optimized CSS for SPB Prime Homepage
+   designed by saeed masoudi
+   https://www.saeedmasoudie.ir/
+   =================================================================== */
+
+/* --- General & Base Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'YekanBakhFaNum', sans-serif !important;
+    font-weight: 600;
+    color: #fff !important;
+    background-color: #0e0e12 !important;
+    padding-top: 40px;
+    padding-bottom: 0;
+}
+
+h1, h2, h3, h4, h5, h6, span, th {
+    font-weight: 700;
+    font-family: 'PeydaWebFaNum', sans-serif !important;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+p, li, td {
+    font-weight: 600;
+    margin-bottom: 0 !important;
+}
+
+a {
+    text-decoration: none !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+ul {
+    list-style: none;
+}
+
+.row {
+    --bs-gutter-x: 0.5rem !important;
+}
+
+.accent-text {
+    color: #00ff84;
+}
+
+.text-success {
+    color: #13fa13 !important;
+}
+
+.text-danger {
+    color: #d30000 !important;
+}
+
+.bi::before, [class*=" bi-"]::before {
+    vertical-align: -0.225em !important;
+}
+
+.ltr {
+    direction: ltr;
+}
+
+/* --- Main Header --- */
+.main-header {
+    backdrop-filter: blur(10px);
+    background: rgba(10, 13, 12, 0.9);
+    border-bottom: 1px solid rgba(0, 255, 132, 0.1);
+    direction: rtl;
+    transition: background 0.3s ease;
+}
+
+.nav-menu .nav-link {
+    position: relative;
+    color: #ddd;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-menu .nav-link::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: #00ff84;
+    transition: width 0.3s ease;
+}
+
+.nav-menu .nav-link:hover {
+    color: #00ff84;
+}
+.nav-menu .nav-link:hover::after {
+    width: 100%;
+}
+
+.mobile-menu {
+    background: rgba(15, 17, 15, 0.95);
+    border-top: 1px solid rgba(0, 255, 132, 0.2);
+}
+.mobile-link {
+    color: #ccc;
+    transition: color 0.3s;
+}
+.mobile-link:hover {
+    color: #00ff84;
+}
+
+/* --- Mobile Bottom Navigation --- */
+.mobile-bottom-nav {
+    background: #0b0d0b;
+    border-top: 1px solid rgba(0, 255, 132, 0.1);
+}
+.mobile-bottom-nav .nav-icon {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8rem;
+}
+.mobile-bottom-nav .nav-icon i {
+    font-size: 1.4rem;
+    margin-bottom: 3px;
+    transition: color 0.3s, transform 0.3s;
+}
+.mobile-bottom-nav .nav-icon:hover i,
+.mobile-bottom-nav .nav-icon:hover {
+    color: #00ff84;
+    transform: translateY(-2px);
+}
+
+/* --- Ruble Section --- */
+.ruble-section {
+    position: relative;
+    overflow: hidden;
+    direction: rtl;
+    background: radial-gradient(circle at top right, #0e1311 0%, #060807 70%);
+    color: #e5e5e5;
+}
+
+.ruble-section::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 180deg at 50% 50%, rgba(0,255,132,0.05), transparent, rgba(255,0,0,0.05), transparent);
+    animation: rotateBg 18s linear infinite;
+    z-index: 0;
+}
+
+.glass-dark {
+    background: rgba(20, 24, 22, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.glass-dark:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 132, 0.08);
+}
+
+.glass-main {
+    background: linear-gradient(145deg, #101512 0%, #0e1410 100%);
+    border: 1px solid rgba(0, 255, 132, 0.25);
+    box-shadow: 0 0 30px rgba(0, 255, 132, 0.1);
+}
+
+.order-title {
+    text-align: center;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #fff;
+}
+.sell-title i {
+    color: #ff4d4d;
+    animation: pulseRed 2s infinite alternate;
+}
+.buy-title i {
+    color: #00ff84;
+    animation: pulseGreen 2s infinite alternate;
+}
+
+.sell-card {
+    border: 1px solid rgba(255, 77, 79, 0.3);
+    box-shadow: 0 0 12px rgba(255, 77, 79, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.sell-card:hover {
+    box-shadow: 0 0 25px rgba(255, 77, 79, 0.45);
+    transform: translateY(-3px);
+}
+
+.buy-card {
+    border: 1px solid rgba(0, 255, 132, 0.3);
+    box-shadow: 0 0 12px rgba(0, 255, 132, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.buy-card:hover {
+    box-shadow: 0 0 25px rgba(0, 255, 132, 0.45);
+    transform: translateY(-3px);
+}
+
+.orderbook-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+.orderbook-table th, .orderbook-table td {
+    padding: 6px 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+.sell-card .orderbook-table tbody tr {
+    background-color: rgba(255, 77, 79, 0.05);
+}
+.sell-card .orderbook-table tbody tr:hover {
+    background-color: rgba(255, 77, 79, 0.12);
+}
+.sell-card .orderbook-table td { color: #ff6b6b; }
+.sell-card .orderbook-table th { color: #ff4d4f; border-bottom: 1px solid rgba(255, 77, 79, 0.3); }
+
+.buy-card .orderbook-table tbody tr {
+    background-color: rgba(0, 255, 132, 0.05);
+}
+.buy-card .orderbook-table tbody tr:hover {
+    background-color: rgba(0, 255, 132, 0.12);
+}
+.buy-card .orderbook-table td { color: #00ff84; }
+.buy-card .orderbook-table th { color: #00ff84; border-bottom: 1px solid rgba(0, 255, 132, 0.3); }
+
+.orderbook-wrapper {
+    max-height: 420px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,255,132,0.3) transparent;
+}
+
+.price-box {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(0,255,132,0.25);
+  border-radius: 1rem;
+  padding: 1.2rem 1.8rem;
+  box-shadow: inset 0 0 15px rgba(0,255,132,0.05);
+  animation: pulseGlow 2.5s infinite alternate;
+  position: relative;
+  z-index: 1;
+}
+
+.price-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00ff84;
+    text-shadow: 0 0 8px rgba(0,255,132,0.5);
+}
+.price-unit {
+    font-size: 1.1rem;
+    color: #bbb;
+}
+#datetime { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+.btn-success-glow {
+    background: linear-gradient(90deg, #00ff84, #00cc66);
+    color: #000;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    transition: all 0.3s;
+    box-shadow: 0 0 15px rgba(0,255,132,0.35);
+    z-index: 10;
+}
+.btn-success-glow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(0,255,132,0.5);
+}
+
+/* --- Crypto Prices Table --- */
+.bg-gradient-dark {
+    background: linear-gradient(180deg, #0b0c10 0%, #0f1115 100%);
+}
+/* === Modern Balanced Crypto Table === */
+.modern-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: transparent;
+}
+
+.modern-table thead {
+  background: rgba(30, 35, 40, 0.95);
+}
+
+.modern-table thead th {
+  color: #00ff84;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  border: none;
+  padding: 0.9rem 0.5rem;
+}
+
+.modern-table tbody tr {
+  background: rgba(20, 25, 30, 0.95);
+  transition: all 0.25s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.modern-table tbody tr:hover {
+  background: rgba(25, 30, 40, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(0, 255, 132, 0.1);
+}
+
+.modern-table td {
+  text-align: center;
+  padding: 0.7rem;
+  border: none;
+  vertical-align: middle;
+}
+
+.modern-table td.crypto-name {
+  text-align: right;
+  font-weight: 500;
+  padding-right: 1rem;
+}
+
+.modern-table td.crypto-name img {
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.modern-table td.price {
+  font-weight: 600;
+  min-width: 130px;
+  transition: color 0.4s ease;
+}
+
+.modern-table td.chart-cell {
+  width: 100px;
+  text-align: center;
+}
+
+.modern-table td canvas.sparkline {
+  width: 90px !important;
+  height: 26px !important;
+  display: inline-block;
+}
+
+.modern-table .btn {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 255, 132, 0.2);
+  transition: all 0.3s ease;
+}
+
+.modern-table .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 255, 132, 0.4);
+}
+
+/* 🔹 Ensure dark table doesn’t hide lines */
+.modern-table .sparkline {
+  filter: drop-shadow(0 0 2px rgba(0, 255, 132, 0.4));
+}
+
+/* 🔹 Fix table row alignment */
+.modern-table td, 
+.modern-table th {
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* 🔹 Sparkline container fix */
+.chart-cell {
+  text-align: center;
+  vertical-align: middle;
+  width: 120px;
+  height: 30px;
+  position: relative;
+}
+
+.sparkline {
+  display: inline-block !important;
+  width: 100px !important;
+  height: 26px !important;
+  min-width: 80px;
+  min-height: 24px;
+  margin: 0 auto;
+  opacity: 1;
+  visibility: visible;
+  background: transparent;
+  z-index: 2;
+}
+
+/* Up/down price colors */
+.price-up { color: #00ff84 !important; }
+.price-down { color: #ff4d4f !important; }
+
+.price-box.price-up {
+  border-color: rgba(0, 255, 132, 0.7);
+  box-shadow: 0 0 30px rgba(0, 255, 132, 0.5);
+  animation: pulseGlowGreen 2s infinite alternate;
+}
+.price-box.price-down {
+  border-color: rgba(255, 77, 79, 0.8);
+  box-shadow: 0 0 30px rgba(255, 77, 79, 0.4);
+  animation: pulseGlowRed 2s infinite alternate;
+}
+.price-box.price-error {
+  border-color: rgba(255, 0, 0, 0.8);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+  animation: flickerError 1s infinite alternate;
+}
+
+@keyframes pulseGlowGreen {
+  from { box-shadow: 0 0 10px rgba(0,255,132,0.4); }
+  to { box-shadow: 0 0 25px rgba(0,255,132,0.7); }
+}
+@keyframes pulseGlowRed {
+  from { box-shadow: 0 0 10px rgba(255,77,79,0.4); }
+  to { box-shadow: 0 0 25px rgba(255,77,79,0.7); }
+}
+@keyframes flickerError {
+  0%, 100% { box-shadow: 0 0 15px rgba(255,0,0,0.5); }
+  50% { box-shadow: 0 0 5px rgba(255,0,0,0.2); }
+}
+
+#buy-steps {
+  direction: rtl;
+}
+
+#buy-steps .step-box {
+  background-color: #101216;
+  transition: all 0.3s ease;
+}
+
+#buy-steps .step-box:hover {
+  transform: translateY(-6px);
+  border-color: #13fa13;
+  box-shadow: 0 0 20px rgba(45, 243, 6, 0.74);
+}
+
+#buy-steps .step-number {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 18px;
+  color: #13fa13;
+  opacity: 0.8;
+  font-weight: bold;
+}
+
+#buy-steps h5 {
+  color: #13fa13;
+}
+
+#buy-steps img {
+  filter: drop-shadow(0 0 5px rgba(81, 250, 2, 0.466));
+  border-radius: 10px;
+}
+
+#buy-steps p {
+  color: #b3b8c2;
+  line-height: 1.8;
+}
+
+.rules-section {
+  background-color: #0a0d0c; /* deep dark tone */
+  color: #e0e0e0;
+  direction: rtl;
+  line-height: 1.9;
+  font-size: 0.95rem;
+}
+
+/* Accent color */
+.accent-text {
+  color: #00ff84;
+}
+
+/* Container */
+.rules-container {
+  background: #121714;
+  border: 1px solid rgba(0, 255, 132, 0.1);
+  box-shadow: 0 0 25px rgba(0, 255, 132, 0.05);
+  max-height: 75vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #00ff84 #121714;
+  transition: all 0.3s ease;
+}
+
+/* Scrollbar (WebKit) */
+.rules-container::-webkit-scrollbar {
+  width: 6px;
+}
+.rules-container::-webkit-scrollbar-thumb {
+  background-color: #00ff84;
+  border-radius: 10px;
+}
+
+/* Each rule article */
+.rule-item {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.rule-item:last-child {
+  border-bottom: none;
+}
+
+/* Rule titles */
+.rule-title {
+  font-weight: 600;
+  color: #00ff84;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Image card */
+.rules-image-card {
+  background: linear-gradient(145deg, #101412, #0b0e0c);
+  border: 1px solid rgba(0, 255, 132, 0.1);
+  box-shadow: 0 0 20px rgba(0, 255, 132, 0.1);
+  transition: 0.3s;
+}
+.rules-image-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0, 255, 132, 0.25);
+}
+
+/* Accent button */
+.btn-accent {
+  background-color: #00ff84;
+  color: #0a0d0c;
+  border: none;
+  transition: 0.3s ease;
+}
+.btn-accent:hover {
+  background-color: #00d972;
+  transform: translateY(-2px);
+}
+
+/* --- Services Carousel --- */
+#servicesCarousel .carousel-item {
+    transition: transform 0.8s ease-in-out;
+}
+#servicesCarousel img {
+    box-shadow: 0 0 15px rgba(0, 255, 132, 0.2);
+}
+#servicesCarousel .carousel-control-prev-icon,
+#servicesCarousel .carousel-control-next-icon {
+    background-size: 60%;
+}
+
+/* --- FAQ Section --- */
+.faq-section { background-color: #0d0f11; }
+.faq-item { transition: all 0.3s ease; }
+.faq-item:hover { border-color: #13fa13 !important; }
+.faq-question {
+    background: transparent;
+    border: none;
+    text-align: right;
+    cursor: pointer;
+}
+.faq-question i { transition: transform 0.3s ease; }
+.faq-question[aria-expanded="true"] i {
+    transform: rotate(180deg);
+    color: #13fa13;
+}
+.faq-answer {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    line-height: 1.8;
+}
+
+/* === GLASS BASE === */
+.glass-box {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(0, 255, 153, 0.15);
+  transition: all 0.3s ease;
+}
+.glass-box:hover {
+  border-color: rgba(0, 255, 153, 0.35);
+  box-shadow: 0 0 15px rgba(0, 255, 153, 0.1);
+}
+
+/* === TELEGRAM CARDS === */
+.glass-box i {
+  transition: transform 0.3s ease;
+}
+.glass-box:hover i {
+  transform: scale(1.2);
+}
+
+/* === Links inside glass boxes === */
+.glass-box a {
+  color: #00ff99;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* soft glow + underline animation on hover */
+.glass-box a:hover {
+  color: #00ffaa;
+  text-shadow: 0 0 10px rgba(0, 255, 153, 0.7);
+}
+
+/* optional subtle underline glow */
+.glass-box a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #00ff99, #00ffaa);
+  box-shadow: 0 0 8px rgba(0, 255, 153, 0.6);
+  transition: width 0.3s ease;
+}
+
+.glass-box a:hover::after {
+  width: 100%;
+}
+
+/* Telegram links inside glass box */
+.tg-link {
+  color: #00ffcc;
+  text-decoration: none;
+  border: 1px solid rgba(0, 255, 153, 0.3);
+  background: rgba(0, 255, 153, 0.05);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.tg-link:hover {
+  background: rgba(0, 255, 153, 0.15);
+  box-shadow: 0 0 10px rgba(0, 255, 153, 0.4);
+  color: #00ffcc !important;
+  transform: translateY(-2px);
+}
+
+/* On mobile, stack them vertically */
+@media (max-width: 576px) {
+  .glass-box .d-flex {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+/* === INPUTS === */
+.glass-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 153, 0.15);
+  color: #ffffff !important;
+  border-radius: 12px;
+  padding: 1rem 0.75rem;
+  transition: all 0.3s ease;
+  caret-color: #00ff99; /* nice green cursor */
+}
+
+/* keep text white while typing */
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+}
+
+/* when focused, keep white text and highlight border */
+.glass-input:focus {
+  background: rgba(0, 255, 153, 0.07);
+  border-color: rgba(0, 255, 153, 0.6);
+  color: #ffffff !important;
+  box-shadow: none;
+  outline: none;
+}
+
+/* label color improvements */
+.form-floating > label {
+  color: rgba(255, 255, 255, 0.55);
+  transition: all 0.3s ease;
+}
+
+.form-floating > .glass-input:focus ~ label,
+.form-floating > .glass-input:not(:placeholder-shown) ~ label {
+  color: #00ff99;
+  font-weight: 500;
+}
+
+/* === BUTTON === */
+.glass-btn {
+  background: linear-gradient(135deg, #00bfa6, #00785f);
+  color: #fff;
+  border: none;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+.glass-btn:hover {
+  background: linear-gradient(135deg, #00ffc3, #00b38f);
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(0, 255, 153, 0.3);
+}
+
+/* --- Footer --- */
+.footer-section {
+    background: #0a0d0c;
+    border-top: 1px solid rgba(0, 255, 132, 0.1);
+}
+.footer-logo-img {
+    filter: drop-shadow(0 0 6px rgba(0, 255, 132, 0.2));
+    transition: transform 0.3s;
+}
+.footer-logo:hover .footer-logo-img {
+    transform: scale(1.05);
+}
+.footer-desc {
+    max-width: 620px;
+    line-height: 1.9;
+}
+.footer-links a:hover { color: #00ff84 !important; }
+.footer-divider { border-color: rgba(255, 255, 255, 0.08); }
+.footer-social a {
+    font-size: 1.4rem;
+    transition: color 0.3s, transform 0.3s;
+}
+.footer-social a:hover {
+    color: #00ff84;
+    transform: translateY(-3px);
+}
+.footer-dev-link { color: #00ff84; }
+.footer-dev-link:hover { opacity: 0.8; }
+
+/* --- Keyframe Animations --- */
+@keyframes rotateBg {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@keyframes pulseRed {
+  from { filter: drop-shadow(0 0 3px rgba(255,0,0,0.4)); }
+  to { filter: drop-shadow(0 0 8px rgba(255,0,0,0.6)); }
+}
+@keyframes pulseGreen {
+  from { filter: drop-shadow(0 0 3px rgba(0,255,132,0.4)); }
+  to { filter: drop-shadow(0 0 8px rgba(0,255,132,0.6)); }
+}
+@keyframes pulseGlow {
+  from { box-shadow: 0 0 12px rgba(0,255,132,0.2); }
+  to { box-shadow: 0 0 25px rgba(0,255,132,0.4); }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    body {
+        padding-top: 0;
+        padding-bottom: 45px;
+    }
+    .header-inner img { width: 42px; }
+    .nav-menu { gap: 1.5rem; }
+    .order-title { font-size: 0.95rem; }
+    .price-value { font-size: 1.6rem; }
+    .ruble-section::before { animation: none; transform: none; }
+    .modern-table td, .modern-table th { font-size: 0.8rem; padding: 0.5rem; }
+    .modern-table td.chart-cell { width: 60px; }
+    #buy-steps .step-box { padding: 2rem 1.25rem; }
+    #buy-steps h5 { font-size: 1rem; }
+    .footer-section { font-size: 0.9rem; }
+    .sell-div {display: none;}
+    .buy-div {display: none;}
+}
+
+@media (max-width: 992px) {
+  .rules-container {
+    max-height: none;
+  }
+}
+
+.russ {
+  font-family: Arial, Helvetica, sans-serif;
+  direction: ltr;
+  color: crimson;
+  padding-bottom: 10px;
+}

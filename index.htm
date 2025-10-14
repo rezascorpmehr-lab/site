@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta name="theme-color" content="#6777ef">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="google-site-verification" content="PSsRuiDRxaZbDt8ut3D6S8p6GmcqzGoAkdsP2diF890">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+  <title> نرخ لحطه ای خدمات دانشچویی و گردشگری - SPB Prime</title>
+  <link rel="icon" href="assets/favicon/favicon.ico">
+  <link rel="stylesheet" href="assets/css/bootstrap.rtl.css">
+  <link rel="stylesheet" href="assets/css/font.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="bgdarkmod">
+<!-- 🌙 Premium Dark Header -->
+<header class="main-header fixed-top">
+  <div class="container d-flex align-items-center justify-content-between py-3 header-inner">
+
+    <!-- ✅ Logo -->
+    <a href="index.htm" class="logo d-flex align-items-center text-decoration-none text-light">
+      <img src="assets/img/logo.png" alt="Logo" width="48" class="me-2">
+      <div class="text-start">
+        <h6 class="m-0 fw-bold text-light">
+          SPB <span class="accent-text">Prime</span>
+        </h6>
+        <small class="text-muted">خدمات دانشجویی و گردشگری در سنت پترزبورگ</small>
+      </div>
+    </a>
+
+    <!-- ✅ Desktop Navigation -->
+    <nav class="nav-menu d-none d-md-flex align-items-center gap-4">
+      <a href="index.htm" class="nav-link">خانه</a>
+      <a href="#services" class="nav-link">خدمات</a>
+      <a href="https://t.me/iran_peter" class="nav-link">گروه تلگرام</a>
+      <a href="rules.html" class="nav-link">قوانین</a>
+      <a href="contact_us.html" class="nav-link">ارتباط با ادمین</a>
+    </nav>
+
+    <!-- ✅ Mobile Toggle -->
+    <button
+      class="navbar-toggler d-md-none border-0 text-light"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mobileMenu"
+    >
+      <i class="bi bi-list fs-2"></i>
+    </button>
+  </div>
+
+  <!-- ✅ Mobile Collapsible Menu -->
+  <div class="collapse mobile-menu" id="mobileMenu">
+    <div class="container py-3 text-center">
+      <a href="index.htm" class="mobile-link d-block py-2">خانه</a>
+      <a href="#services" class="mobile-link d-block py-2">خدمات</a>
+      <a href="https://t.me/iran_peter" class="mobile-link d-block py-2">گروه تلگرام</a>
+      <a href="rules.html" class="mobile-link d-block py-2">قوانین</a>
+      <a href="contact_us.html" class="mobile-link d-block py-2">ارتباط با ادمین</a>
+    </div>
+  </div>
+</header>
+
+<!-- ✅ Mobile Bottom Navigation -->
+<nav class="mobile-bottom-nav d-md-none fixed-bottom">
+  <ul class="d-flex justify-content-around align-items-center m-0 p-0 list-unstyled text-center">
+    <li>
+      <a href="https://t.me/iran_peter" class="nav-icon">
+        <i class="bi bi-telegram"></i>
+        <small>گروه تلگرام</small>
+      </a>
+    </li>
+    <li>
+      <a href="contact_us.html" class="nav-icon">
+        <i class="bi bi-envelope"></i>
+        <small>ارتباط با ادمین</small>
+      </a>
+    </li>
+    <li>
+      <a href="rules.html" class="nav-icon">
+        <i class="bi bi-journal-text"></i>
+        <small>قوانین</small>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<header class="ruble-section py-5">
+  <div class="container mt-5">
+    <div class="row justify-content-center align-items-start g-4">
+      
+      <!-- 🔴 SELL ORDERS -->
+      <div class="col-md-4 col-12 sell-div">
+        <div class="order-card glass-dark sell-card p-3 rounded-4 shadow-lg h-100">
+          <h5 class="order-title sell-title mb-3">
+            <i class="bi bi-arrow-down-circle-fill me-2 text-danger"></i>
+            فروشندگان (Sell Orders)
+          </h5>
+          <div class="orderbook-wrapper">
+            <table class="orderbook-table w-100 text-center">
+              <thead>
+                <tr>
+                  <th>قیمت (تومان)</th>
+                  <th>مقدار (USDT)</th>
+                  <th>مجموع</th>
+                </tr>
+              </thead>
+              <tbody id="asks-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 💰 CENTER: RUB PRICE -->
+      <div class="col-md-4 col-12 text-center">
+        <div class="price-card glass-main p-4 rounded-4 shadow-lg h-100 d-flex flex-column justify-content-center align-items-center">
+          <h5 class="text-white mb-4 fw-semibold">
+            نرخ لحظه‌ای روبل روسیه
+          </h5>
+
+          <div class="price-box d-flex justify-content-center align-items-center gap-3 mb-3">
+            <img src="assets/img/ruble.png" alt="Ruble" width="40" height="40">
+            <span id="ruble-price" class="price-value">000000</span>
+            <span class="price-unit">تومان</span>
+          </div>
+
+          <div id="datetime" class="text-light-50 small mt-2">
+            در حال دریافت زمان...
+          </div>
+
+          <a href="https://t.me/SPB_PRIME" class="btn btn-success-glow mt-4 w-100">
+            ثبت درخواست خرید
+          </a>
+
+        </div>
+      </div>
+
+      <!-- 🟢 BUY ORDERS -->
+      <div class="col-md-4 col-12 buy-div">
+        <div class="order-card glass-dark buy-card p-3 rounded-4 shadow-lg h-100">
+          <h5 class="order-title buy-title mb-3">
+            <i class="bi bi-arrow-up-circle-fill me-2 text-success"></i>
+            خریداران (Buy Orders)
+          </h5>
+          <div class="orderbook-wrapper">
+            <table class="orderbook-table w-100 text-center">
+              <thead>
+                <tr>
+                  <th>قیمت (تومان)</th>
+                  <th>مقدار (USDT)</th>
+                  <th>مجموع</th>
+                </tr>
+              </thead>
+              <tbody id="bids-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<section class="mt-5 mb-5" id="services">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-success">چه خدماتی از<span class="text-light">گروه ما</span> ارائه میشه؟ </h2>
+      <p class="text-secondary mt-3 fs-6">
+        تیم ما علاوه بر خدمات مالی در این زمینه ها هم فعالیت دارد.
+      </p>
+    </div>
+
+    <div id="servicesCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        <!-- Service 1 -->
+        <div class="carousel-item active">
+          <div class="bg-dark text-white p-5 rounded-4 shadow text-center mx-auto" style="max-width:800px;">
+            <img src="assets/img/student.png" alt="Service 1" class="rounded-4 mb-4" style="max-height:100px; object-fit:cover;">
+            <h4 class="fw-bold text-success mb-3">خدمات دانشجویی و پذیرش تحصیلی</h4>
+            <p class="fs-6 lh-lg mb-2 text-light">
+              ما مسیر اخذ پذیرش از دانشگاه‌های سنت پترزبورگ و روسیه را برای شما هموار می‌کنیم از انتخاب رشته تا دریافت ویزا و حضور در روسیه کنار شما هستیم.
+            </p>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="carousel-item">
+          <div class="bg-dark text-white p-5 rounded-4 shadow text-center mx-auto" style="max-width:800px;">
+            <img src="assets/img/travel.png" alt="Service 2" class="rounded-4 mb-4" style="max-height:100px; object-fit:cover;">
+            <h4 class="fw-bold text-success mb-3">خدمات  گردشگری  در سنت پترزبورگ</h4>
+            <p class="fs-6 lh-lg mb-2 text-light">
+              شهر رویایی سنت پترزبورگ را با راهنمایی و لیدر  فارسی‌ زبان بگردید تورهایی اختصاصی و به یادماندنی با تیم ما تجربه کنید.
+            </p>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="carousel-item">
+          <div class="bg-dark text-white p-5 rounded-4 shadow text-center mx-auto" style="max-width:800px;">
+            <img src="assets/img/box.png" alt="Service 3" class="rounded-4 mb-4" style="max-height:100px; object-fit:cover;">
+            <h4 class="fw-bold text-success mb-3">خدمات ارسال و دریافت بار</h4>
+            <p class="fs-6 lh-lg mb-2 text-light">
+              فرستادن مدرک و مرسوله از تمام شهر های ایران به سنت پترزبورگ روسیه و برعکس
+            </p>
+          </div>
+        </div>
+
+        <!-- Service 4 
+        <div class="carousel-item">
+          <div class="bg-dark text-white p-5 rounded-4 shadow text-center mx-auto" style="max-width:800px;">
+            <img src="assets/img/service4.jpg" alt="Service 4" class="rounded-4 mb-4" style="max-height:100px; object-fit:cover;">
+            <h4 class="fw-bold text-success mb-3">مشاوره ارزی و سرمایه‌گذاری</h4>
+            <p class="fs-6 lh-lg mb-2 text-light">
+              راهنمایی تخصصی برای مدیریت سرمایه ارزی و انجام معاملات بین‌المللی.
+            </p>
+            <p class="text-secondary small">توسط تیم کارشناسان مجرب صرافی کازان با تجربه در بازار جهانی.</p>
+          </div>
+        </div>
+        -->
+
+      </div>
+
+      <!-- Carousel Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#servicesCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bg-s rounded-circle p-3" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#servicesCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon rounded-circle p-3" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="prices" class="py-5 bg-gradient-dark text-light">
+  <div class="container">
+    <!-- Header -->
+    <div class="mb-5 text-center">
+      <h2 class="fw-bold text-success">نرخ لحظه‌ای <span class="text-light">رمز ارزها</span></h2>
+    </div>
+
+    <!-- Crypto Table -->
+    <div class="table-responsive">
+      <table class="table modern-table text-light align-middle w-100">
+        <thead>
+          <tr>
+            <th style="width: 35%;">رمزارز</th>
+            <th style="width: 25%;">قیمت لحظه‌ای (IRT)</th>
+            <th style="width: 25%;">روند</th>
+            <th style="width: 15%;"></th>
+          </tr>
+        </thead>
+        <tbody id="crypto-table-body">
+          <tr data-symbol="USDT">
+            <td class="crypto-name">
+              <img src="assets/img/usdt.png" width="28" alt="USDT">
+              تتر (USDT)
+            </td>
+            <td class="price">—</td>
+            <td class="chart-cell"><canvas class="sparkline"></canvas></td>
+            <td>
+              <a href="https://t.me/SPB_PRIME" target="_blank" class="btn btn-success btn-sm fw-semibold rounded-3">ثبت درخواست</a>
+            </td>
+          </tr>
+
+          <tr data-symbol="BTC">
+            <td class="crypto-name">
+              <img src="assets/img/btc.png" width="28" alt="BTC">
+              بیت‌کوین (BTC)
+            </td>
+            <td class="price">—</td>
+            <td class="chart-cell"><canvas class="sparkline"></canvas></td>
+            <td><a href="https://t.me/SPB_PRIME" target="_blank" class="btn btn-success btn-sm fw-semibold rounded-3">ثبت درخواست</a></td>
+          </tr>
+
+          <tr data-symbol="ETH">
+            <td class="crypto-name">
+              <img src="assets/img/eth.png" width="28" alt="ETH">
+              اتریوم (ETH)
+            </td>
+            <td class="price">—</td>
+            <td class="chart-cell"><canvas class="sparkline"></canvas></td>
+            <td><a href="https://t.me/SPB_PRIME" target="_blank" class="btn btn-success btn-sm fw-semibold rounded-3">ثبت درخواست</a></td>
+          </tr>
+
+          <tr data-symbol="TRX">
+            <td class="crypto-name">
+              <img src="assets/img/trx.png" width="28" alt="TRX">
+              ترون (TRX)
+            </td>
+            <td class="price">—</td>
+            <td class="chart-cell"><canvas class="sparkline"></canvas></td>
+            <td><a href="https://t.me/SPB_PRIME" target="_blank" class="btn btn-success btn-sm fw-semibold rounded-3">ثبت درخواست</a></td>
+          </tr>
+
+          <tr data-symbol="SOL">
+            <td class="crypto-name">
+              <img src="assets/img/sol.png" width="28" alt="SOL">
+              سولانا (SOL)
+            </td>
+            <td class="price">—</td>
+            <td class="chart-cell"><canvas class="sparkline"></canvas></td>
+            <td><a href="https://t.me/SPB_PRIME" target="_blank" class="btn btn-success btn-sm fw-semibold rounded-3">ثبت درخواست</a></td>
+          </tr>
+
+          <tr data-symbol="DOGE">
+            <td class="crypto-name">
+              <img src="assets/img/doge.png" width="28" alt="DOGE">
+              دوج‌کوین (DOGE)
+            </td>
+            <td class="price">—</td>
+            <td class="chart-cell"><canvas class="sparkline"></canvas></td>
+            <td><a href="https://t.me/SPB_PRIME" target="_blank" class="btn btn-success btn-sm fw-semibold rounded-3">ثبت درخواست</a></td>
+          </tr>
+
+          <tr data-symbol="BNB">
+            <td class="crypto-name">
+              <img src="assets/img/bnb.png" width="28" alt="BNB">
+              بایننس‌کوین (BNB)
+            </td>
+            <td class="price">—</td>
+            <td class="chart-cell"><canvas class="sparkline"></canvas></td>
+            <td><a href="https://t.me/SPB_PRIME" target="_blank" class="btn btn-success btn-sm fw-semibold rounded-3">ثبت درخواست</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="buy-steps" class="py-5" style="background-color:#0b0c10;">
+  <div class="container text-light">
+    
+    <!-- Title -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-success">آموزش صحبح <span class="text-light">ثبت درخواست</span> تبدیل ارز</h2>
+    </div>
+
+    <!-- Steps -->
+    <div class="row g-4 justify-content-center">
+      
+      <!-- Step 1 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="step-box text-center h-100 p-4 rounded-4 shadow-sm border border-secondary position-relative">
+          <div class="step-number">قدم اول</div>
+          <img src="assets/img/step1.png" alt="تعیین نوع تبدیل" class="img-fluid my-3" style="width:80px;">
+          <h5 class="fw-bold mb-3 text-success">تعیین نوع تبدیل</h5>
+          <p class="text-secondary small mb-0">
+            مشخص کنید چه ارزی را می‌خواهید تبدیل کنید (مثلاً دلار به روبل یا ریال به روبل)
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="step-box text-center h-100 p-4 rounded-4 shadow-sm border border-secondary position-relative">
+          <div class="step-number">قدم دوم</div>
+          <img src="assets/img/step2.png" alt="تعیین حجم معامله" class="img-fluid my-3" style="width:80px;">
+          <h5 class="fw-bold mb-3 text-success">تعیین حجم معامله</h5>
+          <p class="text-secondary small mb-0">
+            مقدار دقیق ارز مبدا را مشخص کنید تا بر اساس آن مبلغ تبدیل محاسبه شود.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="col-md-6 col-lg-3">
+        <a href="rules.html" class="text-decoration-none text-reset">
+          <div class="step-box text-center h-100 p-4 rounded-4 shadow-sm border border-secondary position-relative">
+            <div class="step-number">قدم سوم</div>
+            <img src="assets/img/step3.png" alt="مطالعه قوانین" class="img-fluid my-3" style="width:80px;">
+            <h5 class="fw-bold mb-3 text-success">مطالعه قوانین</h5>
+            <p class="text-secondary small mb-0">
+              قوانین و شرایط خدمات را پیش از ارسال درخواست مطالعه کنید. ارسال پیام به منزله‌ی پذیرش آن‌هاست.
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="col-md-6 col-lg-3">
+        <a href="https://t.me/SPB_PRIME" class="text-decoration-none text-reset">
+          <div class="step-box text-center h-100 p-4 rounded-4 shadow-sm border border-secondary position-relative">
+            <div class="step-number">قدم چهارم</div>
+            <img src="assets/img/step4.png" alt="ارتباط در تلگرام" class="img-fluid my-3" style="width:80px;">
+            <h5 class="fw-bold mb-3 text-success">ارتباط در تلگرام</h5>
+            <p class="text-secondary small mb-0">
+              پس از تکمیل مراحل، برای ثبت نهایی و پاسخ سریع، تنها از طریق تلگرام با ما در ارتباط باشید.
+            </p>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="faq-section py-5">
+  <div class="container">
+    <h3 class="text-center text-light mb-5 fw-bold">سوالات متداول</h3>
+
+    <div class="faq-list mx-auto" style="max-width: 800px;">
+
+      <!-- Q1 -->
+      <div class="faq-item mb-3 rounded-4 bg-dark border border-secondary shadow-sm">
+        <button class="faq-question d-flex justify-content-between align-items-center w-100 p-4 text-white fw-bold"
+                type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+          <span><img src="assets/img/ac.png" class="me-2" width="20">آیا نرخ نشان داده شده در سایت شامل کارمزد می شود؟</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div id="faq1" class="collapse">
+          <div class="faq-answer px-4 pb-4 text-light">
+            خیر نرخ نشان داده شده در سایت همان نرخ محاسبه برای پرداخت درخواست شماست در شرایط خاص ممکن است مقدار کمی جابه جایی نرخ وجود داشته باشد. 
+          </div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="faq-item mb-3 rounded-4 bg-dark border border-secondary shadow-sm">
+        <button class="faq-question d-flex justify-content-between align-items-center w-100 p-4 text-white fw-bold"
+                type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+          <span><img src="assets/img/ac.png" class="me-2" width="20">آیا حجم و مقدار ارزی معامله مهم است؟</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div id="faq2" class="collapse">
+          <div class="faq-answer px-4 pb-4 text-light">
+           بله حجم های پایین (زیر 10 میلیون تومان) ممکن است شامل چند درصد کمیسیون تبدیل شود ولی در حجم های بالا این مشکل وجود نخواهد داشت.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="faq-item mb-3 rounded-4 bg-dark border border-secondary shadow-sm">
+        <button class="faq-question d-flex justify-content-between align-items-center w-100 p-4 text-white fw-bold"
+                type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+          <span><img src="assets/img/ac.png" class="me-2" width="20"> ساعت کاری به چه صورتی می باشد؟</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div id="faq3" class="collapse">
+          <div class="faq-answer px-4 pb-4 text-light">
+            تیم ما در تمام روز های هفته و 24 ساعت شبانه روز آماده پاسخگویی می باشد ولی در شرایط خاص ممکن پاسخگویی با تاخیر انجام شود.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4
+      <div class="faq-item mb-3 rounded-4 bg-dark border border-secondary shadow-sm">
+        <button class="faq-question d-flex justify-content-between align-items-center w-100 p-4 text-white fw-bold"
+                type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+          <span><img src="assets/img/ac.png" class="me-2" width="20"> آیا امکان دریافت حواله نقدی وجود دارد؟</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div id="faq4" class="collapse">
+          <div class="faq-answer px-4 pb-4 text-light">
+            بله، برای سفارشات بالای ۲۰۰ هزار روبل، امکان تحویل نقدی در شهرهای کازان و مسکو فراهم است.
+          </div>
+        </div>
+      </div>  -->
+
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer-section text-center text-light pt-5 pb-4 mt-5">
+  <div class="container">
+    <!-- Logo & Title -->
+    <a href="index.htm" class="footer-logo d-inline-block mb-4 text-decoration-none">
+      <img src="assets/img/logo.png" alt="SPB Prime" width="85" class="footer-logo-img mb-2">
+      <h5 class="fw-bold mb-1 text-light">SPB <span class="accent-text">Prime</span></h5>
+      <small class="text-muted">خدمات دانشجویی و گردشگری در سنت پترزبورگ</small>
+    </a>
+
+    <!-- Description -->
+    <p class="footer-desc mx-auto mt-4 mb-4">
+      یک تیم جوان و پرانرژی، با هدف حل مشکلات روزمرهٔ دانشجویان و گردشگران❤️
+    </p>
+
+    <!-- Quick Links -->
+    <ul class="footer-links list-inline mb-4">
+      <li class="list-inline-item mx-3">
+        <a href="rules.html">قوانین و مقررات</a>
+      </li>
+      <li class="list-inline-item mx-3">
+        <a href="https://t.me/SPB_PRIME" target="_blank">ارتباط تلگرام</a>
+      </li>
+      <li class="list-inline-item mx-3">
+        <a href="https://t.me/iran_peter" target="_blank">گروه تلگرام</a>
+      </li>
+    </ul>
+
+    <!-- Social Icons -->
+    <div class="footer-social d-flex justify-content-center gap-4 mb-4">
+      <a href="https://t.me/SPB_PRIME" target="_blank"><i class="bi bi-telegram"></i></a>
+      <!--<a href="https://x.com/kazanexchange" target="_blank"><i class="bi bi-twitter-x"></i></a>
+      <a href="https://www.instagram.com/kazanexchange" target="_blank"><i class="bi bi-instagram"></i></a> -->
+      <a href="https://wa.me/79992226843" target="_blank"><i class="bi bi-whatsapp"></i></a>
+    </div>
+
+    <!-- Divider -->
+    <hr class="footer-divider my-4">
+
+    <!-- Bottom Text -->
+    <p class="mb-1 fs-6 text-secondary">
+      © تمامی حقوق برای <span class="accent-text">SPB Prime</span> محفوظ است.
+    </p>
+    <small class="text-muted">
+      طراحی و توسعه توسط 
+      <a href="https://www.saeedmasoudie.ir/" target="_blank" class="footer-dev-link">
+        سعید مسعودی
+      </a>
+    </small>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/script.js"></script>
+
+</div>
+</body>
+</html>
