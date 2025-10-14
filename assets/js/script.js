@@ -36,7 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const bestAsk = parseFloat(usdt.asks[0][0]);
       const bestBid = parseFloat(usdt.bids[0][0]);
       const avgPrice = Math.round((bestAsk + bestBid) / 20);
-      const avgPriceToman = Math.round(Math.round(avgPrice / 81));
+
+      const priceRes = await fetch("https://raw.githubusercontent.com/rezascorpmehr-lab/site/refs/heads/main/price.txt");
+      if (!priceRes.ok) throw new Error("Price fetch failed");
+      const priceText = await priceRes.text();
+      const dynamicRate = parseFloat(priceText.trim());
+
+      const avgPriceToman = Math.round(Math.round(avgPrice / dynamicRate));
 
       const priceBox = priceEl?.closest(".price-box");
       if (!priceEl || !priceBox) return;
