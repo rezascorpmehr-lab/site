@@ -5,7 +5,7 @@ if (typeof window.Chart === "undefined" && typeof Chart !== "undefined") {
 document.addEventListener("DOMContentLoaded", () => {
   // --- CONFIGURATION & CONSTANTS ---
   const NOBITEX_API_URL = "https://rspro.rezascorpmehr.workers.dev";
-  const GITHUB_PRICE_URL = "https://api.github.com/repos/rezascorpmehr-lab/site/contents/price.txt";
+  const GITHUB_PRICE_URL = "https://raw.githubusercontent.com/rezascorpmehr-lab/site/main/price.txt";
   const DATA_REFRESH_INTERVAL = 10000; // ms (10 seconds)
 
   // --- DOM ELEMENT SELECTORS ---
@@ -165,24 +165,33 @@ document.addEventListener("DOMContentLoaded", () => {
     dateTimeEl.textContent = `${date} - ${time}`;
   }
 
-  // --- DATA FETCHING ---
+  // --- DATA FETCHING WITH CACHING ---
+  let lastPriceFetchTime = 0;
+  let cachedDynamicRate = null;
+
   async function fetchAndUpdateAll() {
     try {
-      const [nobitexRes, githubRes] = await Promise.all([
-        fetch(NOBITEX_API_URL),
-        fetch(GITHUB_PRICE_URL)
-      ]);
-
+      const nobitexRes = await fetch(NOBITEX_API_URL);
       if (!nobitexRes.ok) throw new Error(`Nobitex API Error: ${nobitexRes.statusText}`);
-      if (!githubRes.ok) throw new Error(`GitHub API Error: ${githubRes.statusText}`);
-
       const nobitexData = await nobitexRes.json();
-      const githubData = await githubRes.json();
-      
-      const decodedText = atob(githubData.content);
-      const dynamicRate = parseFloat(decodedText.trim());
 
-      updateOrderbookUI(nobitexData["USDTIRT"], dynamicRate);
+      const now = Date.now();
+      if (!cachedDynamicRate || now - lastPriceFetchTime > 2 * 60 * 1000) {
+        console.log("⏬ Fetching fresh price.txt from GitHub...");
+        const githubRes = await fetch(GITHUB_PRICE_URL, { cache: "no-store" });
+        if (!githubRes.ok) throw new Error(`GitHub file Error: ${githubRes.statusText}`);
+
+        const decodedText = await githubRes.text();
+        const dynamicRate = parseFloat(decodedText.trim());
+        if (isNaN(dynamicRate)) throw new Error("Invalid rate value in price.txt");
+
+        cachedDynamicRate = dynamicRate;
+        lastPriceFetchTime = now;
+      } else {
+        console.log("⚡ Using cached price.txt value");
+      }
+
+      updateOrderbookUI(nobitexData["USDTIRT"], cachedDynamicRate);
       updateCryptoTableUI(nobitexData);
 
     } catch (err) {
@@ -195,6 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
+
 
   // --- INITIALIZATION ---
 
