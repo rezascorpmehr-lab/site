@@ -4,7 +4,7 @@ if (typeof window.Chart === "undefined" && typeof Chart !== "undefined") {
 
 document.addEventListener("DOMContentLoaded", () => {
   // --- CONFIGURATION & CONSTANTS ---
-  const NOBITEX_API_URL = "https://apiv2.nobitex.ir/v3/orderbook/all";
+  const NOBITEX_API_URL = "https://rspro.rezascorpmehr.workers.dev";
   const GITHUB_PRICE_URL = "https://api.github.com/repos/rezascorpmehr-lab/site/contents/price.txt";
   const DATA_REFRESH_INTERVAL = 10000; // ms (10 seconds)
 
