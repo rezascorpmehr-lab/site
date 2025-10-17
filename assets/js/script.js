@@ -170,44 +170,65 @@ document.addEventListener("DOMContentLoaded", () => {
   let cachedDynamicRate = null;
 
   async function fetchAndUpdateAll() {
-    try {
-      const nobitexRes = await fetch(NOBITEX_API_URL);
-      if (!nobitexRes.ok) throw new Error(`Nobitex API Error: ${nobitexRes.statusText}`);
-      const nobitexData = await nobitexRes.json();
+    const WORKER_URL = "https://rspro.rezascorpmehr.workers.dev";
+    const DIRECT_URL = "https://apiv2.nobitex.ir/v3/orderbook/all";
 
+    async function safeFetch(url, options = {}, timeout = 8000) {
+      return Promise.race([
+        fetch(url, options),
+        new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), timeout))
+      ]);
+    }
+
+    try {
+      let nobitexRes = await safeFetch(WORKER_URL, { cache: "no-store" });
+      if (!nobitexRes.ok) throw new Error(`Worker failed: ${nobitexRes.statusText}`);
+
+      const nobitexData = await nobitexRes.json();
       const now = Date.now();
       if (!cachedDynamicRate || now - lastPriceFetchTime > 2 * 60 * 1000) {
-        console.log("⏬ Fetching fresh price.txt from GitHub...");
-        const githubRes = await fetch(GITHUB_PRICE_URL, { cache: "no-store" });
-        if (!githubRes.ok) throw new Error(`GitHub file Error: ${githubRes.statusText}`);
-
-        const decodedText = await githubRes.text();
-        const dynamicRate = parseFloat(decodedText.trim());
-        if (isNaN(dynamicRate)) throw new Error("Invalid rate value in price.txt");
-
-        cachedDynamicRate = dynamicRate;
+        const githubRes = await safeFetch(GITHUB_PRICE_URL, { cache: "no-store" });
+        if (!githubRes.ok) throw new Error(`GitHub Error: ${githubRes.statusText}`);
+        const txt = await githubRes.text();
+        cachedDynamicRate = parseFloat(txt.trim());
         lastPriceFetchTime = now;
-      } else {
-        console.log("⚡ Using cached price.txt value");
       }
 
       updateOrderbookUI(nobitexData["USDTIRT"], cachedDynamicRate);
       updateCryptoTableUI(nobitexData);
 
     } catch (err) {
-      console.error("❌ Data fetch failed:", err);
-      showOrderBookWarning("عدم توانایی در دریافت داده‌ها. لطفاً اتصال اینترنت خود را بررسی کنید.");
-      const priceBox = priceEl?.closest(".price-box");
-      if (priceBox) {
-        priceBox.classList.remove("price-up", "price-down");
-        priceBox.classList.add("price-error");
+      console.warn("⚠️ Worker failed, trying direct API:", err.message);
+
+      try {
+        const directRes = await safeFetch(DIRECT_URL, { cache: "no-store" });
+        if (!directRes.ok) throw new Error(`Direct fetch error: ${directRes.statusText}`);
+        const nobitexData = await directRes.json();
+
+        const now = Date.now();
+        if (!cachedDynamicRate || now - lastPriceFetchTime > 2 * 60 * 1000) {
+          const githubRes = await safeFetch(GITHUB_PRICE_URL, { cache: "no-store" });
+          const txt = await githubRes.text();
+          cachedDynamicRate = parseFloat(txt.trim());
+          lastPriceFetchTime = now;
+        }
+
+        updateOrderbookUI(nobitexData["USDTIRT"], cachedDynamicRate);
+        updateCryptoTableUI(nobitexData);
+
+      } catch (finalErr) {
+        console.error("❌ Both worker & direct fetch failed:", finalErr);
+        showOrderBookWarning("عدم توانایی در دریافت داده‌ها. لطفاً اتصال اینترنت خود را بررسی کنید.");
+        const priceBox = priceEl?.closest(".price-box");
+        if (priceBox) {
+          priceBox.classList.remove("price-up", "price-down");
+          priceBox.classList.add("price-error");
+        }
       }
     }
   }
 
-
   // --- INITIALIZATION ---
-
   function initialize() {
     if (dateTimeEl) {
       updateDateTime();
