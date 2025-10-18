@@ -165,9 +165,10 @@ document.addEventListener("DOMContentLoaded", () => {
     dateTimeEl.textContent = `${date} - ${time}`;
   }
 
-  // --- DATA FETCHING WITH CACHING ---
+  // --- DATA FETCHING WITH AUTO-FALLBACK & MEMORY ---
   let lastPriceFetchTime = 0;
   let cachedDynamicRate = null;
+  let preferredSource = localStorage.getItem("preferredSource") || "direct";
 
   async function fetchAndUpdateAll() {
     const WORKER_URL = "https://rspro.rezascorpmehr.workers.dev";
@@ -180,11 +181,17 @@ document.addEventListener("DOMContentLoaded", () => {
       ]);
     }
 
-    try {
-      let nobitexRes = await safeFetch(WORKER_URL, { cache: "no-store" });
-      if (!nobitexRes.ok) throw new Error(`Worker failed: ${nobitexRes.statusText}`);
+    async function fetchFromSource(source) {
+      const url = source === "direct" ? DIRECT_URL : WORKER_URL;
+      const res = await safeFetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error(`${source} fetch failed: ${res.statusText}`);
+      return res.json();
+    }
 
-      const nobitexData = await nobitexRes.json();
+    try {
+      const nobitexData = await fetchFromSource(preferredSource);
+      localStorage.setItem("preferredSource", preferredSource);
+
       const now = Date.now();
       if (!cachedDynamicRate || now - lastPriceFetchTime > 2 * 60 * 1000) {
         const githubRes = await safeFetch(GITHUB_PRICE_URL, { cache: "no-store" });
@@ -197,13 +204,15 @@ document.addEventListener("DOMContentLoaded", () => {
       updateOrderbookUI(nobitexData["USDTIRT"], cachedDynamicRate);
       updateCryptoTableUI(nobitexData);
 
-    } catch (err) {
-      console.warn("⚠️ Worker failed, trying direct API:", err.message);
+    } catch (firstErr) {
+      console.warn(`⚠️ ${preferredSource} source failed:`, firstErr.message);
+      const fallbackSource = preferredSource === "direct" ? "worker" : "direct";
 
       try {
-        const directRes = await safeFetch(DIRECT_URL, { cache: "no-store" });
-        if (!directRes.ok) throw new Error(`Direct fetch error: ${directRes.statusText}`);
-        const nobitexData = await directRes.json();
+        const nobitexData = await fetchFromSource(fallbackSource);
+        preferredSource = fallbackSource;
+        localStorage.setItem("preferredSource", preferredSource);
+        console.info(`✅ Switched to ${fallbackSource} as preferred source.`);
 
         const now = Date.now();
         if (!cachedDynamicRate || now - lastPriceFetchTime > 2 * 60 * 1000) {
@@ -217,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCryptoTableUI(nobitexData);
 
       } catch (finalErr) {
-        console.error("❌ Both worker & direct fetch failed:", finalErr);
+        console.error("❌ Both sources failed:", finalErr);
         showOrderBookWarning("عدم توانایی در دریافت داده‌ها. لطفاً اتصال اینترنت خود را بررسی کنید.");
         const priceBox = priceEl?.closest(".price-box");
         if (priceBox) {
