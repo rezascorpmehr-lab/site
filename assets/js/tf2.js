@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const PRICE_URL = "https://raw.githubusercontent.com/rezascorpmehr-lab/site/main/price.json";
   const NOBITEX_URL = "https://apiv2.nobitex.ir/v3/orderbook/USDTIRT";
-  const REFRESH_INTERVAL = 10000; // 20 seconds
+  const REFRESH_INTERVAL = 10000;
 
   const tf2El = document.getElementById("tf2key-price");
   const tokenEl = document.getElementById("tf2token-price");
@@ -15,31 +15,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function fetchPrices() {
     try {
-      // 1️⃣ Load structured data from price.json
       const priceRes = await fetch(PRICE_URL + "?" + Date.now(), { cache: "no-store" });
       if (!priceRes.ok) throw new Error("Failed to fetch price.json");
       const data = await priceRes.json();
 
-      const ruble = parseFloat(data.ruble ?? 1);
       const tf2Multiplier = parseFloat(data.tf2 ?? 1);
       const tokenMultiplier = parseFloat(data.token ?? 1);
-
-      if (isNaN(ruble) || isNaN(tf2Multiplier) || isNaN(tokenMultiplier)) {
-        throw new Error("Invalid data in price.json");
-      }
-
-      // 2️⃣ Fetch Nobitex USDT/IRT price
       const nobitexRes = await fetch(NOBITEX_URL, { cache: "no-store" });
+
       if (!nobitexRes.ok) throw new Error("Nobitex API error");
       const nobitexData = await nobitexRes.json();
 
       const lastTradePrice = parseFloat(nobitexData?.lastTradePrice);
       if (isNaN(lastTradePrice)) throw new Error("Invalid Nobitex response");
-
-      // 3️⃣ Convert to toman and apply multipliers
-      const baseToman = lastTradePrice / (10 * ruble);
-      const tf2Price = Math.round(baseToman * tf2Multiplier);
-      const tokenPrice = Math.round(baseToman * tokenMultiplier);
+      
+      const usdPrice = (lastTradePrice / 10);
+      const tf2Price = Math.round(usdPrice * tf2Multiplier);
+      const tokenPrice = Math.round(usdPrice * tokenMultiplier);
 
       updatePrice(tf2El, tf2Price, "tf2");
       updatePrice(tokenEl, tokenPrice, "token");
