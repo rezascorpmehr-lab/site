@@ -1,13 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
 <head>
-  <meta name="theme-color" content="#6777ef">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/android-chrome-512x512.png">
+  <meta name="theme-color" content="#6777ef">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta name="google-site-verification" content="PSsRuiDRxaZbDt8ut3D6S8p6GmcqzGoAkdsP2diF890">
@@ -32,6 +32,7 @@
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Cache-Control" content="max-age=31536000">
+  
   <link rel="icon" href="assets/favicon/favicon.ico">
   <link rel="stylesheet" href="assets/css/bootstrap.rtl.css">
   <link rel="stylesheet" href="assets/css/font.css">
@@ -42,6 +43,7 @@
 <body class="bgdarkmod">
 <header class="main-header fixed-top">
   <div class="container d-flex align-items-center justify-content-between py-3 header-inner">
+
     <a href="index.htm" class="logo d-flex align-items-center text-decoration-none text-light">
       <img src="assets/img/logo.png" alt="Logo" width="48" class="me-2">
       <div class="text-start">
@@ -55,6 +57,7 @@
     <nav class="nav-menu d-none d-md-flex align-items-center gap-4">
       <a href="index.htm" class="nav-link">خانه</a>
       <a href="#services" class="nav-link">خدمات</a>
+      <a href="tf2.html" class="nav-link">TF2</a>
       <a href="https://t.me/iran_peter" class="nav-link">گروه تلگرام</a>
       <a href="rules.html" class="nav-link">قوانین</a>
       <a href="contact_us.html" class="nav-link">ارتباط با ادمین</a>
@@ -74,6 +77,7 @@
     <div class="container py-3 text-center">
       <a href="index.htm" class="mobile-link d-block py-2">خانه</a>
       <a href="#services" class="mobile-link d-block py-2">خدمات</a>
+      <a href="tf2.html" class="mobile-link d-block py-2">TF2</a>
       <a href="https://t.me/iran_peter" class="mobile-link d-block py-2">گروه تلگرام</a>
       <a href="rules.html" class="mobile-link d-block py-2">قوانین</a>
       <a href="contact_us.html" class="mobile-link d-block py-2">ارتباط با ادمین</a>
@@ -104,110 +108,101 @@
   </ul>
 </nav>
 
-<section id="contact" class="py-5" style="background-color:#0b0c10; direction:rtl;">
-  <div class="container text-light">
+<section class="tf2-section">
+  <canvas id="web-bg"></canvas>
 
+  <div class="container mt-5 position-relative" style="z-index:2;">
     <div class="text-center mb-5">
-      <h2 class="fw-bold text-success">تماس با ما</h2>
-      <p class="text-secondary mt-3 fs-6">
-        برای دریافت پاسخ سریع‌تر، از طریق <span class="text-success fw-bold">تلگرام</span> پیام دهید — تیم ما همیشه آماده پاسخگویی است 💬
-      </p>
+      <h2 class="fw-bold text-success">فروش  TF2</h2>
+      <p class="text-secondary mt-3">خرید سریع و ایمن کلید و توکن TF2 از <span class="text-success fw-bold">SPB Prime</span> 🎮</p>
     </div>
 
-    <div class="row g-4 align-items-stretch">
-      <div class="col-lg-6">
-        <div class="glass-box h-100 p-4 p-md-5 rounded-4">
-          <h5 class="text-success mb-4 text-center fw-bold">ارسال پیام</h5>
-          <form action="https://formspree.io/f/mvgwdozn" method="post" name="contactForm">
-            <div class="row g-3">
-              <div class="col-md-6">
-                <div class="form-floating">
-                  <input type="text" id="full_name" name="full_name" class="form-control glass-input" placeholder="نام و نام خانوادگی">
-                  <label for="full_name">نام و نام خانوادگی</label>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="form-floating">
-                  <input type="text" id="phone" name="phone_number" class="form-control glass-input" placeholder="شماره تماس">
-                  <label for="phone">شماره تماس</label>
-                </div>
-              </div>
-
-              <div class="col-12">
-                <div class="form-floating">
-                  <input type="email" id="email" name="email" class="form-control glass-input" placeholder="پست الکترونیکی">
-                  <label for="email">پست الکترونیکی</label>
-                </div>
-              </div>
-
-              <div class="col-12">
-                <div class="form-floating">
-                  <textarea id="message" name="message" class="form-control glass-input" placeholder="پیام شما..." style="height: 160px;"></textarea>
-                  <label for="message">پیام شما...</label>
-                </div>
-              </div>
-            </div>
-
-            <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap">
-              <button type="submit" class="glass-btn px-5 py-2 rounded-3">
-                ارسال پیام
-              </button>
-              <a href="index.htm" class="text-secondary text-decoration-none mt-3 mt-md-0">
-                <i class="bi bi-arrow-left ms-2"></i> بازگشت به صفحه اصلی
-              </a>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="glass-box h-100 overflow-hidden rounded-4 p-0">
-          <iframe
-            id="darkMap"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d511631.13795635576!2d29.43535193015664!3d59.93945740319569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4696378cc74a65ed%3A0x6dc7673fab848eff!2sSt%20Petersburg%2C%20Russia!5e0!3m2!1sen!2s!4v1760394552547!5m2!1sen!2s"
-            width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg);" allowfullscreen="" loading="lazy">
-          </iframe>
-        </div>
-      </div>
-    </div>
-
-    <div class="row mt-5 g-4">
-      <div class="col-md-4">
-        <div class="glass-box p-4 rounded-4 text-center h-100">
-          <i class="bi bi-telegram text-success fs-1 mb-3"></i>
-          <h6 class="fw-bold">گروه تلگرام</h6>
-          <a href="https://t.me/iran_peter" class="text-success small d-block mt-2">عضویت در گروه تلگرام</a>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="glass-box p-4 rounded-4 text-center h-100">
-          <i class="bi bi-telephone text-success fs-1 mb-3"></i>
-          <h6 class="fw-bold">تماس مستقیم</h6>
-          <p class="text-light mb-1 ltr">+7 (999) 222 6843</p>
-          <a href="https://wa.me/79992226843" class="text-success small">ارسال در واتساپ</a>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="glass-box p-4 rounded-4 text-center h-100">
-          <i class="bi bi-chat-dots text-success fs-1 mb-3"></i>
-          <h6 class="fw-bold mb-3">ارتباط سریع در تلگرام</h6>
-
-          <div class="d-flex justify-content-center gap-3">
-            <a href="https://t.me/rusreza" class="tg-link px-3 py-2 rounded-3 d-flex align-items-center gap-2">
-              <i class="bi bi-headset"></i> پشتیبانی
-            </a>
-            <a href="https://t.me/SPB_PRIME" class="tg-link px-3 py-2 rounded-3 d-flex align-items-center gap-2">
-              <i class="bi bi-send"></i> ثبت درخواست
-            </a>
+    <div class="row justify-content-center g-4">
+      <div class="col-md-5 col-12">
+        <div class="tf2-card">
+          <h5 class="order-title mb-3"><i class="bi bi-circle-fill text-success me-2"></i> توکن TF2 (TF2 Token)</h5>
+          <img src="assets/img/token.png" alt="TF2 Token" class="tf2-img">
+          <div class="price-box mb-3">
+            <span id="tf2token-price">۸۸٬۰۰۰</span> <span class="price-unit">تومان</span>
           </div>
+          <a href="https://t.me/rusreza" class="btn btn-success-glow w-100 py-3">ثبت درخواست خرید در تلگرام</a>
         </div>
       </div>
 
+      <div class="col-md-5 col-12">
+        <div class="tf2-card">
+          <h5 class="order-title mb-3"><i class="bi bi-key-fill text-danger me-2"></i> کلید TF2 (TF2 Key)</h5>
+          <img src="assets/img/tf2.png" alt="TF2 Key" class="tf2-img">
+          <div class="price-box mb-3">
+            <span id="tf2key-price">۱۵۰٬۰۰۰</span> <span class="price-unit">تومان</span>
+          </div>
+          <a href="https://t.me/rusreza" class="btn btn-success-glow w-100 py-3">ثبت درخواست خرید در تلگرام</a>
+        </div>
+      </div>
     </div>
   </div>
+
+  <script>
+    const canvas = document.getElementById("web-bg");
+    const ctx = canvas.getContext("2d");
+    let w, h, mouseX = 0, mouseY = 0;
+
+    function resize() {
+      w = canvas.width = canvas.parentElement.offsetWidth;
+      h = canvas.height = canvas.parentElement.offsetHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    document.addEventListener("mousemove", e => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    });
+
+    const dots = Array.from({ length: 65 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: Math.random() * 2 + 1
+    }));
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      for (const d of dots) {
+        d.x += d.vx;
+        d.y += d.vy;
+        if (d.x < 0 || d.x > w) d.vx *= -1;
+        if (d.y < 0 || d.y > h) d.vy *= -1;
+        const dx = d.x - mouseX;
+        const dy = d.y - mouseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const influence = Math.max(0, 150 - dist) / 150;
+        d.x += dx * -0.02 * influence;
+        d.y += dy * -0.02 * influence;
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0,255,132,0.6)";
+        ctx.fill();
+      }
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const a = dots[i], b = dots[j];
+          const dist = Math.hypot(a.x - b.x, a.y - b.y);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = `rgba(0,255,132,${(1 - dist / 120) * 0.15})`;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
 </section>
 
 <footer class="footer-section text-center text-light pt-5 pb-4 mt-5">
@@ -217,61 +212,33 @@
       <h5 class="fw-bold mb-1 text-light">SPB <span class="accent-text">Prime</span></h5>
       <small class="text-muted">خدمات دانشجویی و گردشگری در سنت پترزبورگ</small>
     </a>
-
-    <p class="footer-desc mx-auto mt-4 mb-4">
-      یک تیم جوان و پرانرژی، با هدف حل مشکلات روزمره دانشجویان و گردشگران❤️
-    </p>
-
+    <p class="footer-desc mx-auto mt-4 mb-4">یک تیم جوان و پرانرژی، با هدف حل مشکلات روزمره دانشجویان و گردشگران❤️</p>
     <ul class="footer-links list-inline mb-4">
-      <li class="list-inline-item mx-3">
-        <a href="rules.html">قوانین و مقررات</a>
-      </li>
-      <li class="list-inline-item mx-3">
-        <a href="https://t.me/SPB_PRIME" target="_blank">ارتباط تلگرام</a>
-      </li>
-      <li class="list-inline-item mx-3">
-        <a href="https://t.me/iran_peter" target="_blank">گروه تلگرام</a>
-      </li>
+      <li class="list-inline-item mx-3"><a href="rules.html">قوانین و مقررات</a></li>
+      <li class="list-inline-item mx-3"><a href="https://t.me/SPB_PRIME" target="_blank">ارتباط تلگرام</a></li>
+      <li class="list-inline-item mx-3"><a href="https://t.me/iran_peter" target="_blank">گروه تلگرام</a></li>
     </ul>
-
-    <!-- Social Icons -->
     <div class="footer-social d-flex justify-content-center gap-4 mb-4">
       <a href="https://t.me/SPB_PRIME" target="_blank"><i class="bi bi-telegram"></i></a>
-      <!--<a href="https://x.com/test" target="_blank"><i class="bi bi-twitter-x"></i></a>
-      <a href="https://www.instagram.com/test" target="_blank"><i class="bi bi-instagram"></i></a> -->
       <a href="https://wa.me/79992226843" target="_blank"><i class="bi bi-whatsapp"></i></a>
     </div>
-
     <hr class="footer-divider my-4">
-
     <div class="row align-items-center text-center text-md-start">
       <div class="col-md-4 mb-2 mb-md-0 text-md-start">
-        <small class="text-muted">
-          مدیریت  : 
-          <a href="https://t.me/rusreza" target="_blank" class="footer-dev-link">
-            عظیمی مهر
-          </a>
-        </small>
+        <small class="text-muted">مدیریت: <a href="https://t.me/rusreza" target="_blank" class="footer-dev-link">عظیمی مهر</a></small>
       </div>
       <div class="col-md-4 mb-2 mb-md-0 text-center">
-        <p class="mb-0 fs-6 text-secondary">
-          © تمامی حقوق برای <span class="accent-text">SPB Prime</span> محفوظ است.
-        </p>
+        <p class="mb-0 fs-6 text-secondary">© تمامی حقوق برای <span class="accent-text">SPB Prime</span> محفوظ است.</p>
       </div>
       <div class="col-md-4 mb-2 mb-md-0 text-md-end">
-        <small class="text-muted">
-          طراحی و توسعه توسط 
-          <a href="https://www.saeedmasoudie.ir/" target="_blank" class="footer-dev-link">
-            سعید مسعودی
-          </a>
-        </small>
+        <small class="text-muted">طراحی و توسعه توسط <a href="https://www.saeedmasoudie.ir/" target="_blank" class="footer-dev-link">سعید مسعودی</a></small>
       </div>
     </div>
   </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
 
-</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/tf2.js"></script>
+
 </body>
 </html>

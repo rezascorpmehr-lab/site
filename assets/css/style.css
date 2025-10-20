@@ -764,7 +764,7 @@ ul {
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
     body {
-        padding-top: 0;
+        padding-top: 45px;
         padding-bottom: 45px;
     }
     .header-inner img { width: 42px; }
@@ -779,6 +779,9 @@ ul {
     .footer-section { font-size: 0.9rem; }
     .sell-div {display: none;}
     .buy-div {display: none;}
+    .tf2-section { padding: 6rem 1rem 3rem; }
+    .tf2-card { padding: 1.5rem; }
+    .price-box { font-size: 1.4rem; }
 }
 
 @media (max-width: 992px) {
@@ -843,4 +846,91 @@ ul {
 @keyframes pulseGlow {
   from { text-shadow: 0 0 6px rgba(0,255,132,0.3); }
   to { text-shadow: 0 0 12px rgba(0,255,132,0.6); }
+}
+
+.tf2-section {
+  position: relative;
+  padding: 8rem 0 6rem;
+  overflow: hidden;
+  background: radial-gradient(circle at top right, rgba(0,255,132,0.03), rgba(0,0,0,0.9));
+}
+
+/* ===== Canvas Background ===== */
+#web-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* ===== Cards ===== */
+.tf2-card {
+  background: rgba(15, 20, 18, 0.85);
+  border: 1px solid rgba(0, 255, 132, 0.2);
+  box-shadow: 0 0 25px rgba(0, 255, 132, 0.08);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 3;
+}
+
+.tf2-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px rgba(0, 255, 132, 0.25);
+}
+
+.tf2-img {
+  width: 100%;
+  max-width: 516px;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin: 1rem 0 1.5rem;
+  box-shadow: 0 0 20px rgba(0, 255, 132, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+
+.tf2-card:hover .tf2-img {
+  transform: scale(1.03);
+  box-shadow: 0 0 35px rgba(0, 255, 132, 0.3);
+}
+
+.price-box {
+  font-size: 1.8rem;
+  color: #00ff84;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(0, 255, 132, 0.4);
+}
+
+.price-unit {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-right: 0.3rem;
+}
+
+.btn-success-glow {
+  background: linear-gradient(90deg, #00ff84, #00d67a);
+  border: none;
+  color: #0a0a0a;
+  font-weight: 600;
+  box-shadow: 0 0 15px rgba(0,255,132,0.35);
+  transition: all 0.3s ease;
+}
+
+.btn-success-glow:hover {
+  background: linear-gradient(90deg, #00d67a, #00ff84);
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(0,255,132,0.5);
+}
+
+h5.order-title {
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(255,255,255,0.08);
 }
